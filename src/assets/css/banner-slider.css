@@ -1,0 +1,253 @@
+/*.main-container {
+  padding: 10px 15px;
+}*/
+.skyblue {
+/*	background-color: #22c8ff;*/
+/*	background:url(../images/banner2.jpg) no-repeat;*/
+	height: 441px !important;
+}
+.deepskyblue {
+/*	background-color: #00bfff;*/
+	background:url(../images/banner3.jpg) no-repeat;
+	height: 441px !important;
+}
+.darkerskyblue {
+/*	background-color: #00a6dd;*/
+	background:url(../images/banner3.jpg) no-repeat;
+	height: 441px !important;
+}
+.carousel-indicators {
+	bottom: 0;
+}
+.carousel-control.right,
+.carousel-control.left {
+	background-image: none;
+}
+.carousel .item {
+	min-height: 350px; 
+	height: 100%;
+	width:100%; 
+	
+}
+/*.carousel-caption h3,
+.carousel .icon-container,*/
+.carousel-caption button {
+/*	background-color: #09c;*/
+}
+.carousel-caption h3 {
+	padding: .5em;
+}
+.carousel .icon-container {
+	display: inline-block;
+/*	font-size: 25px;
+	line-height: 25px;
+	padding: 1em;
+	text-align: center;
+	border-radius: 50%;*/
+	margin-left:-550px;
+
+}
+
+.carousel .icon-container-categorise {
+	display: inline-block;
+/*	font-size: 25px;
+	line-height: 25px;
+	padding: 1em;
+	text-align: center;
+	border-radius: 50%;*/
+	margin-left:-450px;
+	float: right;
+	padding-right:50px;
+
+}
+
+.carousel .icon-container-share {
+	display: inline-block;
+	margin-left:-100px;
+	float: right;
+	margin-top:17%;
+	z-index:-9;
+	position:relative;
+
+}
+
+
+/*.carousel-caption button {
+	border-color: #00bfff;
+	margin-top: 1em; 
+}*/
+
+/* Animation delays */
+.carousel-caption h3:first-child {
+	-webkit-animation-delay: 1s;
+	        animation-delay: 1s;
+}
+.carousel-caption h3:nth-child(2) {
+	-webkit-animation-delay: 2s;
+	        animation-delay: 2s;
+}
+/*.carousel-caption button {
+	-webkit-animation-delay: 3s;
+	        animation-delay: 3s;
+}*/
+
+/*h1 {
+  text-align: center;  
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.p {
+  padding-top: 125px;
+  text-align: center;
+}
+
+.p a {
+  text-decoration: underline;
+}
+*/
+.laptopBgimg .carousel-caption {
+    top:65px !important;
+	right:0%;
+}
+
+.laptopBgimg .carousel-indicators .active {
+	width:17px;
+    height:17px;
+    background-color:#ed4f54 !important;
+	margin: 1px;
+}
+
+
+.laptopBgimg .carousel-indicators li{
+	width:17px;
+    height:17px;
+    background-color:#59e1bc !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.tech-slideshow {
+  height:838px;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+.tech-slideshow > div {
+  height: 200px;
+  width: 2526px;
+/*  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/collage.jpg);*/
+  background:url(../images/banner2.jpg);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+.tech-slideshow .mover-1 {
+  -webkit-animation: moveSlideshow 12s linear infinite;
+          animation: moveSlideshow 12s linear infinite;
+}
+/*.tech-slideshow .mover-2 {
+  opacity: 0;
+  -webkit-transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out;
+  background-position: 0 -200px;
+  -webkit-animation: moveSlideshow 15s linear infinite;
+          animation: moveSlideshow 15s linear infinite;
+}*/
+.tech-slideshow:hover .mover-2 {
+  opacity: 1;
+}
+
+@-webkit-keyframes moveSlideshow {
+  100% { 
+    -webkit-transform: translateY(-66.6666%); 
+            transform: translateY(-66.6666%);  
+  }
+}
+
+@keyframes moveSlideshow {
+  100% { 
+    -webkit-transform: translateY(-66.6666%); 
+            transform: translateY(-66.6666%);  
+  }
+}
+
+
+
+
+
+
+
+
+
+
+.vertical .carousel-inner {
+  height: 100%;
+}
+
+.carousel.vertical .item {
+ -webkit-transition: 0s ease-in-out top;
+     -moz-transition: 0s ease-in-out top;
+      -ms-transition: 0s ease-in-out top;
+       -o-transition: 0s ease-in-out top;
+          transition: 0s ease-in-out top;
+
+-webkit-transition-timing-function: linear;
+
+    transition-timing-function: linear;
+}
+
+.carousel.vertical .active {
+  top: 0;
+}
+
+.carousel.vertical .next {
+  top: 400px;
+}
+
+.carousel.vertical .prev {
+  top: -400px;
+}
+
+.carousel.vertical .next.left,
+.carousel.vertical .prev.right {
+  top: 0;
+}
+
+.carousel.vertical .active.left {
+  top: -400px;
+}
+
+.carousel.vertical .active.right {
+  top: 400px;
+}
+
+.carousel.vertical .item {
+    left: 0;
+}
+
+
+
+
+
+
+
+
+

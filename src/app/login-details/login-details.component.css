@@ -1,0 +1,19 @@
+	container_margin_bottom{
+		    margin-bottom: 260px;
+	}
+	.err_pass{
+		margin-top: 5px;
+		height: 35px;
+		padding-top: 5px;
+		width: 223px;
+		position:absolute;
+		z-index:500;
+	}
+	.err_pass_mismatch{
+		margin-top: 5px;
+		height: 35px;
+		padding-top: 5px;
+		width:363px;
+		position:absolute;
+		z-index:500;
+	}

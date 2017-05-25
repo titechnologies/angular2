@@ -1,0 +1,25 @@
+.home-page-video-container h2 {
+    line-height: 40px;
+    color: #000;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+    font-family: "FuturaStdBold";
+    margin-top: 10px;
+}
+.home-page-video-container h1 {
+    margin-top: 11%;
+    line-height: 40px;
+    color: #000;
+    font-size: 42px;
+    text-align: center;
+    font-weight: bold;
+    font-family: "FuturaStdBold";
+}
+.home-page-video-tag {
+    text-align: center;
+    margin: 82px 0px 35px 0px;
+}
+.container_height{
+	height:1150px;
+}

@@ -1,0 +1,95 @@
+<app-private-header></app-private-header>
+<div class="container signup-your-details contact contact-details container_margin_bottom"  >
+	<div class="container signup-head">
+		<!-- <a href="#"> <i class="fa fa-check-circle" aria-hidden="true"></i> </a> -->
+		<h1>You've been successfully registered</h1>
+		<h1><span>Let’s get started on your profile!</span></h1>
+	</div>
+	<section class="signup-margin">
+	<form class="form_box" (ngSubmit)="signupcomplete(stepLastForm.value)"  #stepLastForm="ngForm">
+			<div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 wallpost wallpost-hide row-eq-height contact-info">
+				
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12 contentshift">
+						<h1 class="head-margin"> Contact Information </h1>
+						<div class="col-md-12 mobile-contact-block"><div >
+							<div class="tooltip-image"><img src="assets/images/tooltip-image-blue.png"></div>
+						<div class="clear"></div>
+					</div>
+					<input type="hidden" name="fulladdress" value="Wm Morrison Supermarkets PLC, Mart Street, Hawick, Roxburghshire" id="get_fulladdress">
+				</div>
+					
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+					<label for="Phone number">Phone Number</label>
+
+					<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 no-padding">
+						<input placeholder="" [(ngModel)]= "phoneNumber" class="form-control  validate[custom[integer],funcCall[notUkNo]]" aria-describedby="basic-addon1" data-errormessage-custom-error="Spaces are not allowed! Only numbers are accepted." name="ph_no" type="text" value="" id="form-validation-field-0">
+					</div>
+				</div>
+					
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+					<div class="form-group" id="postcode_show">
+						<label for="Postcode">Postcode</label>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6  no-padding">
+							<input id="zip_code"  [(ngModel)] = "postCode" placeholder="" class="form-control" aria-describedby="basic-addon1" name="zip_code" type="text"   value="" (keyup) = "clearErrorMessage($event)">
+							</div>
+						<div class="col-lg-5 col-md-5 col-sm-5 col-xs-7 no-padding getaddressmain">
+							<button class="addtobag getaddr" type="button" id="getAddrBtn" (click) = "getAddress()"><span><span>GET ADDRESS</span></span></button>
+						</div>
+					</div>
+				</div>
+				<h6><span  style="color:#CDC3C3;"> Enter post code in Uk only </span></h6>
+				<div class="form-group" id="invalid_zip_error" style="display:none;">
+					<h5 style="color:red;">Postcode not valid. Please Retry or <a class="enterman">Enter Manually </a></h5>
+				</div>
+				
+				<div  class="form-group" id="invalid_zip_count">
+					<!-- <h5 style="color:red;">The postcode must be minimum of 5 characters !</h5><h5>{{postCode?.length}}</h5> -->
+				</div>
+
+				<div *ngIf = "postCodeError" class="alert alert-danger err_postcode" id="invalid_zip_empty">
+					{{ postCodeError }}
+				</div>
+				<!-- -->
+				<img *ngIf="loader" src="assets/images/loader.gif" class="loader_height">
+				<div *ngIf="address">
+				<div class="form-group address1_choose" style="">
+					<label for="House name or number">House Name Or Number</label>
+					<input placeholder="House name or number" id="address-line-1" class="form-control address-line ui-autocomplete-input" aria-describedby="basic-addon1" name="address_line_1" type="text" value="" autocomplete="off" [ngModel] ="houseName">
+					<div id="school-list" *ngIf="addressDropdownFlag" class="list-width">
+						<ul class="school-list-select">
+							<li *ngFor="let i of AddressArray" (click)="selectAddress($event)" >{{i}}</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="form-group address2_choose" style="">
+					<label for="Address line 2">Address Line 2</label>
+					<input placeholder="Address Line 2" id="address-line-2" class="form-control address-line" aria-describedby="basic-addon1" name="address_line_2" type="text" value="" [ngModel] ="addressLine2">
+				</div>
+				
+				<div class="form-group city_choose" style="">
+					<label for="CITY or TOWN">CITY Or TOWN</label>
+					<input id="city_get" class="form-control" placeholder="City" name="city" type="text" [ngModel] ="city">
+				</div>
+				
+				<div class="form-group country_choose">
+					<label for="COUNTRY">COUNTRY</label>
+					<input id="country_get1" placeholder="Country" readonly="" name="country" [ngModel] ="country" type="text">
+				</div>
+				<!-- -->
+				</div>
+				<span class="loading_addr" style="display: none;"><i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="color:#787878;"></i></span>
+				
+				<div class="buttons">
+					<button type="submit" class="signup" id="save_disable">Save<img src="assets/images/btn-save.png"></button>
+					<a routerLink = "/dashboard"> <button type="button" class="detailsbtn_contact cancel cancel_edit" >Cancel </button></a>
+				</div>
+				
+					</div>
+				</div>
+			</div>
+	</form>
+</section>
+</div>
+<app-footer></app-footer>

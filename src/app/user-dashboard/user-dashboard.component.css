@@ -1,0 +1,25 @@
+	.menu_area a.button_red {
+		background: #ec4b52 none repeat scroll 0 0;
+		color: #fff;
+		display: inline-block;
+		font: 13px/27px "Futura W01 Bold",sans-serif;
+		margin-bottom: 10px;
+		padding: 0 15px;
+		font-size: 13px !important;
+		
+	}
+	.email {
+		text-decoration:none;
+		color:grey;
+		font: 13px/27px "Futura W01 Bold",sans-serif;
+	}
+	.comment_icon {
+		padding-left: 310px;
+	}
+	.container-modal{
+		margin-bottom: 188px;
+	}
+	.modal_margin_top{
+		margin-top:-400px;
+	}
+

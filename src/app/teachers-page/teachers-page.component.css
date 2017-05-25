@@ -1,0 +1,31 @@
+ .font_color{
+	color:#262222;
+ }
+ .img_margin_top{
+	margin-top:50px;
+}
+ h4{
+	font-size: 18px;
+    color: white;
+    padding-left: 61px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+ }
+ .workshop_heading{
+	font-size: 36px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+
+ }
+ .h2_heading{
+	padding-top: 15px;
+ }
+ .h3_bottom{
+	margin-bottom: 20px;
+	font-size: 24px;
+	line-height: 30px;
+ }
+ .bottom_margin{
+	margin-bottom: 175px;
+ }
+ 

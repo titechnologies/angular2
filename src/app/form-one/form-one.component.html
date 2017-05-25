@@ -1,0 +1,156 @@
+<app-private-header></app-private-header>
+<div class="colour-cahnage-tab">
+	<div class="container signup-your-details">
+		<div class="container signup-head">
+			 <!-- <a> <i class="fa fa-check-circle" aria-hidden="true"></i> </a>  -->
+			<h1>You've been successfully registered</h1>
+			<h1><span>Let’s get started on your profile!</span></h1>
+		</div>
+		<section class="signup-margin">
+			<form accept-charset="UTF-8" id="reg-form" (ngSubmit)="saveSignUpFormOneDatas(step2Form.value)"  #step2Form="ngForm">
+				<div class="col-lg-7 col-md-12 col-sm-12 col-xs-12  wallpost wallpost-hide" style="margin-bottom:250px;">
+					<div class="col-lg-12 contentshift ">
+						<h1> Your Details</h1>
+						<div class="row margins">
+							<div class="col-lg-4 col-md-2 col-sm-3 col-xs-4">
+								<h6>Profile <span class="none">Picture</span></h6>
+								
+								<div class="profile-pic">
+									<div class="profile-pic_edt" style="display:none">
+										<img src="assets/images/edit-red.svg">
+									</div>
+									<div class="loader bubblingG" style="display:none;">
+										<span id="bubblingG_1"></span>
+										<span id="bubblingG_2"></span>
+										<span id="bubblingG_3"></span>
+									</div>
+									<div id="prof_pic">
+										<div id="cropped_item">
+											<img *ngIf="(!itemPhoto  && !profilePic)" id="prof_img" src="assets/images/profile-pic.png">
+											<img *ngIf="itemPhoto" class="profile-pic"  [src]="itemPhoto">
+											<img *ngIf="(!itemPhoto && profilePic)" class="profile-pic"  [src]="profileImageUrl+profilePic" >
+										</div>
+										<div id="cropContainerEyecandy" style="display: none;">
+											<div class="cropControls cropControlsUpload">
+												<i class="cropControlUpload"></i>
+											</div>
+										</div>
+									</div>
+								</div>
+								<label>
+									<div class="fileUpload">Upload Image
+										<input type="file" (change)="fileChange($event)" style="display:none;" accept=".jpg,.png">
+									</div>
+								</label>
+							</div>
+
+							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padding-left padding-left-mobile">
+								<div class="name">
+									<label for="First Name *">First Name *</label>
+									<div class="form-group has-success has-feedback">
+										<input id="first_name"  [(ngModel)] = "firstName" (ngModelChange) = "onNameChange($event)"  name="firstName" class="form-control validate[required,custom[onlyLetterSp]]" data-prompt-position="topLeft:0" aria-describedby="basic-addon1" name="first_name" type="text" value="">
+										<div *ngIf="firstNameError" class="alert alert-danger err_formone">{{firstNameError}}</div>
+									</div>
+
+									<label for="Last Name *">Last Name *</label>
+									<div class="form-group has-success has-feedback">
+										<input id="last_name"  [(ngModel)] = "lastName" (ngModelChange) = "onNameChange($event)" name="lastName" class="form-control validate[required,custom[onlyLetterSp]]" data-prompt-position="topLeft:0" aria-describedby="basic-addon1" name="last_name" type="text">
+											<div *ngIf="lastNameError" class="alert alert-danger err_formone">{{lastNameError}}</div>
+									</div>
+
+									<label class="control control--checkbox margin-top">
+										<input *ngIf="profileImageflag"  class="show_check"  name="profile_pic_show_status" type="checkbox" value="1"  #profileImage [checked]="profileImageCheckbx"	(change)="updateProfileImageOptions(profileImage.checked, $event)">
+										<input *ngIf="!profileImageflag" id="pic_stat" class="show_check"  name="profile_pic_show_status" type="checkbox" value="" disabled>
+										<div class="control__indicator"> </div>
+										<h6 class="pic_stat ">Show profile picture on my CV</h6>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="row margins">
+							<div class="col-lg-5 col-md-4 col-sm-4 col-xs-7 padding-right">
+								<label for="Your Birthday *">Your Birthday *</label>
+									<my-date-picker [options]="myDatePickerOptions"
+										(dateChanged)="onDateChanged($event)" name="mydate" [(ngModel)] ="mydate"></my-date-picker>
+										<div *ngIf="dobError" class="alert alert-danger err_dob">{{dobError}}</div>
+										<div *ngIf="yearErrMessage" class="alert alert-danger err_dob">Please Choose a valid year</div>
+							</div>
+							
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 padding-left padding-left-mobile">
+								<label class="none"></label>
+								<label class="control control--checkbox your-details-ipad">
+									<input  *ngIf ="dobFlag"  class="show_check"  name="birthdate_show_status" type="checkbox" value="1"  #dob [checked]= "dobCheckbx"	(change)="updateDobOptions(dob.checked, $event)">
+									<input  *ngIf ="!dobFlag"id="dob_stat" class="show_check"  name="birthdate_show_status" type="checkbox" value="" disabled>
+									<div class="control__indicator"> </div>
+									<h6 class="dob_stat ">Show date on my CV</h6>
+								</label>
+							</div>
+						</div>
+						
+						<label for="Bio">Bio</label>
+						<textarea placeholder="This is a short bio to appear at the top of your online CV+ profile. " [(ngModel)] = "bio" id="bio_edit" name="profile_bio" cols="50" rows="10"></textarea>
+						<a href="#">
+							<i class="demo-icon icon-help-circled tooltp tooltip-right tooltip-right-red user-help-quest-icon" aria-hidden="true"></i>
+							<i class="demo-icon icon-cancel-circle tooltip-right clse tooltip-right-red" aria-hidden="true" style="display:none;"></i>
+						</a>
+						<a href="#" class="mobile-function">
+							<i class="demo-icon icon-help-circled tooltp tooltip-right tooltip-right-red" aria-hidden="true"></i>
+							<i class="demo-icon icon-cancel-circle tooltip-right clse tooltip-right-red" aria-hidden="true" style="display:none;"></i>
+						</a>
+						
+						<label for="Email Address">Email Address</label>
+						<input  [(ngModel)] = "email" placeholder="youraddress@gmail.com" [disabled] = "true"  class="form-control userdetlsemail" aria-describedby="basic-addon1" id="primary_email" name="email" type="text">
+						<label class="control control--checkbox margin-top-10">
+							<input *ngIf = "email" id="primary_email_stat" class="show_check" name="primary_email_show_status" type="checkbox" value="1" #primaryEmail [checked]="primaryEmailCheckbx"	(change)="updateprimaryEmailOptions(primaryEmail.checked, $event)">
+							<input *ngIf = "!email" id="primary_email_stat" class="show_check" name="primary_email_show_status" type="checkbox" value="" disabled>
+							<div class="control__indicator"> </div>
+							<h6 class="primary_email_stat ">Show this on my CV</h6>
+						</label>
+						
+						<label for="Second Email Address">Second Email Address</label>
+						<input  [(ngModel)] = "emailSecond"  (ngModelChange) = "secondaryEmailOnChange($event)" placeholder="Want to add another? Something more professional?" class="form-control validate[custom[email],funcCall[notEqual]] userdetlsemail" data-prompt-position="topLeft:0" aria-describedby="basic-addon1" id="secondary_email" name="secondary_email" type="text">
+						<div *ngIf="secondaryEmailError" class="alert alert-danger err_secondary_email">{{secondaryEmailError}}</div>
+						<label class="control control--checkbox margin-top-10">
+							<!-- <input *ngIf="!emailSecond" id="secondary_email_stat" class="show_check" disabled="disabled" name="secondary_email_show_status" type="checkbox" value=""> -->
+							<input *ngIf="emailSecond" id="secondary_email_stat" class="show_check"  name="secondary_email_show_status" type="checkbox" value="1"  #secondEmail [checked]=false	(change)="updateSecondEmailOptions(secondEmail.checked, $event)">
+							<div class="control__indicator"> </div>
+							<h6 class="secondary_email_stat ">Show this on my CV</h6>
+						</label>
+						
+						<div class="buttons-details">
+							<button class="signup your_details_btn" id="details_submit" >Save <span class="icon-saved"></span></button>
+						</div>
+					</div>
+
+
+					<div style="display:none;" class="col-lg-4 wallpost-left form2-help-pad">
+						<div class="center">
+							<div class="bubble bubble-margin">
+								<h5>Need a bit <br>of help?</h5>
+							</div>
+							<div class="tooltip-image-signup"><img src="assets/images/tooltip-image.png"></div>
+						</div>
+						<div class="col-lg-12">
+							<h4 class="text-left">Here are a few tips:</h4>
+							<h5 class="wallpost-left-cntnt" style="font-family: Helvetica !important;color:#fff !important;font-size:12px !important;font-weight: 600;letter-spacing: 0.7px;line-height: 16px; ">
+							Your Bio will be 3 sentences long and will appear in your header profile.
+							This is the first piece of information that people will see on your CV and Profile- so make it as clear and concise as you can.</h5>
+							<ul>
+								<li>Mention the stage you’re at in your career/ education. Here are some ideas: Year 10 student, college student,
+								 Year 11 school leaver, etc. </li>
+								<li>Now, add your favourite subject, skill or achievement which is relevant to the job or experience you would like. </li>
+								<li>Finally, you need to pinpoint which type of opportunity you want. Maybe your looking for a mentor? Or for a work
+								 experience placement? A part or full-time job maybe? Even an apprenticeship...</li>
+							</ul>
+							<h5 class="wallpost-left-cntnt" style="font-family: Helvetica !important;color:#fff !important;font-size:12px !important;font-weight: 600;letter-spacing: 0.7px;line-height: 16px; ">This text will appear in the header of your profile, and also at the top of your CV. </h5>
+						</div>
+
+						<input type="hidden" name="profile_pic" id="img_name" value="">
+						<input type="hidden" name="profile_pic_original" id="img_name_original" value="">
+					</div>
+				</div>
+			</form>
+		</section>
+	</div>
+</div>
+<app-footer></app-footer>

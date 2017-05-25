@@ -1,0 +1,66 @@
+<!-- login modal start -->
+    
+    <div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open" *ngIf="visible">
+	<div class="slds-modal__container">
+		<div class="modal-header">
+			<button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close">
+				<button type="button" class="slds-button close close_modal" data-target="loginModal" data-dismiss="modal" (click)="cancellogin()">
+						<img src="assets/images/close.svg" alt="Closing icon for CV+ Sign Up"/>
+				</button>      
+			</button>
+		</div>   
+		<div class="slds-modal__content">
+			<div class="modal-header">
+				<button type="button" class="close close_modal" data-target="loginModal" data-dismiss="modal" (click)="cancellogin()">
+					<img src="assets/images/close.svg" alt="Closing icon for CV+ Sign Up"/>
+				</button>
+				<div class="heading"><h2>Already a member?<br/>Nice to see you again </h2></div>
+			</div>
+			<div class="modal-body">
+				<div class="signinbox">
+					<span class="social_loader">
+						<div class="text-align-center">
+							<a  (click)="onFacebookLoginClick()" class="icon_pointer butn btn-icon btn-facebook social_login_icon"><i class="fa fa-facebook"></i></a>
+							<a class="butn btn-icon btn-google social_login_icon" (click)="signIn('google')"><div class="img"></div>  </a>
+							<a class="icon_pointer butn btn-icon btn-linkdin social_signup_icon" (click)="signIn('linkedin')"><i class="fa fa-linkedin" aria-hidden="true"></i> </a> 
+						</div>
+						<h4>or with an email account</h4>
+					</span>
+					<br/>
+					<form (ngSubmit)="onSubmit(logInForm2.value)" #logInForm2="ngForm">
+						<span class='custom_success'> </span>
+						<span class="custom_error"></span>
+						<div class="form-group">
+							<label for="Email or username* ">Email Or Username* </label>
+							<div class="input-group-btn">
+								<input placeholder="" class="form-control" data-prompt-position="topLeft:0" name="email"   value="" id="email"  (ngModel)="emaill" #emaill = ngModel (ngModelChange)="onchangeEmail($event)" (blur)="emailValidator($event.target.value)">
+							</div>
+							<div *ngIf="invalidEmailAddress" class="alert alert-danger err_email" role="alert">Enter valid email</div>
+						</div>
+						<div class="form-group">
+							<label for="Password*">Password*</label>
+							<div class="input-group-btn">
+								<input id="password" class="form-control" data-prompt-position="topLeft:0" placeholder=""  name="password" type="password" value=""  (ngModel)="password" #password = ngModel (blur)="validatePassword($event.target.value)" (ngModelChange)="onchangePassword($event)">
+							</div>
+							<div *ngIf="passwrdNullMessage"	 class="alert alert-danger err_pass">
+									Password is required
+							</div>
+							<div *ngIf="logInErrorMessage"	 class="alert alert-danger err_login">
+								{{ logInErrorMessage}}
+							</div>
+							<!-- <label class="reset-pswrd">
+								<h6> <span class="forgotpwd forgotpwd-color"> Forgot password?</span> <a href="#" id="forgot_pass" class="t&c text-deco"> Reset it now.</a></h6>
+							</label> -->
+						</div>
+						<br/>
+						<div style="text-align: center;"><button type="submit"  class="signup" >Login</button></div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+<div class="slds-backdrop slds-backdrop--open" *ngIf="visible"></div>
+<!-- login modal ends -->
+<app-sign-up></app-sign-up>

@@ -1,0 +1,24 @@
+	.err_formone{
+		margin-top: -13px;
+		height: 35px;
+		padding-top: 2px;
+		width: 223px;
+		position:absolute;
+		z-index:500;
+	}
+	.err_secondary_email{
+		margin-top: 4px;
+		height: 35px;
+		padding-top: 2px;
+		width: 350px;
+		position:absolute;
+		z-index:500;
+	}
+	.err_dob{
+		margin-top: -1px;
+		height: 35px;
+		padding-top: 2px;
+		width: 223px;
+		position:absolute;
+		z-index:500;
+	}

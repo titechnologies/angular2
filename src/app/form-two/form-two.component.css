@@ -1,0 +1,15 @@
+	.list-width{
+		width:140%;
+	}
+	.container_margin_bottom{
+		margin-bottom: 260px;
+	}
+	.loader_height{
+		height:150px;
+	}
+	.err_postcode{
+		margin-top: 5px;
+		height: 35px;
+		padding-top: 5px;
+		width: 229px
+	}

@@ -1,0 +1,156 @@
+
+<!-- signup modal start -->
+
+<div role="dialog" tabindex="-1" aria-labelledby="header43" class="modal-slds slds-fade-in-open" *ngIf="visible">
+	<div class="slds-modal__container">
+		<div class="modal-header">
+			<button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" >
+				<button type="button" class="slds-button close close_modal" data-target="loginModal" data-dismiss="modal" (click)="cancelLogin()">
+						<img src="assets/images/close.svg" alt="Closing icon for CV+ Sign Up"/>
+				</button>      
+			</button>
+		</div>   
+		<div class="slds-modal__content">
+			<div class="modal-header">
+				<button type="button" class="close signup_close"  data-target="loginModal" data-dismiss="modal" (click)="cancelSignUp()"><img src="assets/images/close.svg" alt="Closing icon for CV+ In Social medias"/> </button>
+				<div class="heading">
+					<h2>Want to get started? </h2>
+
+					<h5>Register through your network</h5>
+				</div>
+			</div>
+			<div class="modal-body">
+				<div class="signinbox">
+					<span class="social_signup_loader">
+						<div class="text-align-center">
+							<a (click)="onFacebookLoginClick()" class="icon_pointer butn btn-icon btn-facebook social_signup_icon"><i class="fa fa-facebook"></i></a>
+							<a class="butn btn-icon btn-google social_login_icon" (click)="signIn('google')"><div class="img"></div>  </a>
+							<a class="icon_pointer butn btn-icon btn-linkdin social_signup_icon" (click)="signIn('linkedin')"><i class="fa fa-linkedin" aria-hidden="true"></i> </a> 
+						</div>
+						<h4>or with an email account</h4>
+					</span>
+					<br/>
+					<form class="form_box" (ngSubmit)="onSubmitSignUp(logInForm.value)"  #logInForm="ngForm" >
+						<div class="form-group" *ngIf="socialSignUpEmail">
+							<label for="EMAIL*">EMAIL*</label>
+							<input  placeholder="" id="email" class="form-control" name="email" type="text" (ngModel)="email" #email="ngModel"  email (ngModelChange)="onchangeEmail($event)"  (blur)="emailValidator($event.target.value)">
+							<div *ngIf="invalidEmailAddress" class="alert alert-danger err_signup">Enter valid email</div>
+							<div *ngIf="emailErrorMessage"	class="alert alert-danger err_signup_pass">
+								{{ emailErrorMessage}}
+							</div>
+						</div>
+						
+						<div class="form-group">  
+							<label for="Are You?*">Are You?*</label>
+							<div class="input-group-btn select are_you" id="select1">
+								<select id="level_select" [(ngModel)]="selectedValue" (ngModelChange)="getlevelId($event)"  class="form-control  btn btn-default dropdown-toggle test_temp" data-prompt-position="topLeft:0" role="menu" name="level_id">
+									<option value="" selected="selected">Choose an option</option><option [ngValue]="1">Year 8</option><option [ngValue]="2">Year 9</option><option [ngValue]="3">Year 10</option><option [ngValue]="4">Year 11</option><option [ngValue]="5">Year 12</option><option [ngValue]="6">College Year 1</option><option value="7">College Year 2</option><option [ngValue]="8">Uni Student</option><option [ngValue]="9">Teacher</option><option [ngValue]="11">Group Leader</option><option [ngValue]="12">Other</option><option [ngValue]="13">Professional</option><option [ngValue]="14">Self-employed</option>
+								</select>
+								<span class="caret"></span>
+							</div>
+							<div *ngIf="levelError" class="alert alert-danger err_signup">This field is required</div>
+							<div  *ngIf="levelvalue==1 || levelvalue==2 || levelvalue==3 || levelvalue==4 || levelvalue==5 || levelvalue==9  " id="school_select" class="level_display form-group  pos-relative">
+								<label for="School*" id="level_text">School*</label>
+									
+								  <ng-select [allowClear]="true" style="overflow-wrap: break-word;"
+								  [items]="schoolArray" 
+								  (keyup)="getSchools($event)"
+								  (removed)="removed($event)"
+								  (selected)="selected_institution($event)" 
+								  placeholder="Type school name">
+								  </ng-select>
+								  
+
+								  <input id="institution_id" name="school_id" type="hidden" value="">
+								  <input id="university_id" name="university_id" type="hidden" value="">
+								  <input id="college_id" name="college_id" type="hidden" value="">
+								  <input id="school_teacher_id" name="school_teacher_id" type="hidden" value="secret">
+								  <div id="school-list" class="display-none"><ul class="school-list-select"></ul></div>
+									
+									
+							</div>
+							<div  *ngIf="levelvalue==6 || levelvalue==7" id="group_select" class="level_display form-group" >
+								<label for="Group Name">College Name</label>
+									<ng-select [allowClear]="true"
+									[items]="schoolArray" 
+									(keyup)="getColleges($event)"
+									(removed)="removed($event)"
+									(selected)="selected_institution($event)" 
+									placeholder="Type College name">
+									</ng-select>
+							</div>
+							<div  *ngIf="levelvalue==8" id="group_select" class="level_display form-group" >
+								<label for="Group Name">University Name</label>
+									<ng-select [allowClear]="true"
+									[items]="schoolArray" 
+									(keyup)="getUniverity($event)"
+									(removed)="removed($event)"
+									(selected)="selected_institution($event)" 
+									placeholder="Type University name">
+									</ng-select>
+							</div>
+							<div  *ngIf="levelvalue==11" id="group_select" class="level_display form-group" >
+								<label for="Group Name">Group Leader</label>
+								<input placeholder="Enter your group name"   [(ngModel)] = "groupname" class="form-control " data-prompt-position="topLeft:0" autocomplete="off" name="group_name" type="text" value="">
+							</div>
+
+						
+							<div *ngIf="levelvalue==12" id="other_select" class="level_display form-group" >
+								<label for="Organisation*">Organisation</label>
+								<input class="form-control"  [(ngModel)] = "organisation" name="organisation" type="text" value="">
+							</div>
+							<!-- <div *ngIf="levelvalue==12" id="other_institution" class="level_display form-group ">
+								<label for="Other" id="other_label">Other</label>
+								<input id="custom_institution" class="form-control"  name="other" type="text" value="">
+							</div> -->
+							<div *ngIf="institutionError" class="alert alert-danger err_signup" id="institution-error">This field is required</div>
+						</div>
+
+						
+						<div class="form-group" [hidden]="socialSignUpGender" >
+					<div class="col-lg-12 no-padding">
+			
+					</div>
+					  <input  class="gendr-radio" id="gendr-male" name="gender"  ng-control="options" type="radio" [ngValue]="1" (change)="getGender($event)"> <label class="gendr-radio-name" for="gendr-male"> Male </label>
+
+					  <input class="gendr-radio" id="gendr-fe" name="gender"  ng-control="options" type="radio" [ngValue]="2" (change)="getGender($event)"> <label class="gendr-radio-name" for="gendr-fe">Female</label>
+				  </div>
+				  <br/>
+				  <div *ngIf="genderError" class="alert alert-danger err_signup" id="institution-error">This field is required</div>
+					  <div class="form-group clearfix" [hidden]="socialSignUp">
+					<div class="col-lg-12 no-padding">
+					<label for="Password*">Password*</label>
+					<input placeholder="Use letters and numbers!" id="pwd"  class="form-control"   name="password" type="password" value="" (ngModel)="password" (ngModelChange)="onchangePassword($event)" (blur) ="validatePassword($event.target.value)">
+					
+					<div *ngIf="passwordError" class="alert alert-danger err_signup">This field is required</div>
+					<div *ngIf="invalidPassword" class="alert alert-danger err_signup_password">Password should contain letters and numbers and a minimum of 8 characters</div>
+					</div>					
+				  </div>
+				  <div class="form-group clearfix" [hidden]="socialSignUp">
+					<label for="Confirm Password*">Confirm Password*</label>
+					<input placeholder="Let&#039;s have that password again" class="form-control" data-prompt-position="topLeft:0" name="confirm_password" type="password" value="" [ngModel]="conf_password" (ngModelChange)="onchangePassword($event)">
+					<div *ngIf="confirmPwdErrorMessage"	class="alert alert-danger err_signup_pass">
+							{{ confirmPwdErrorMessage }}
+					</div>
+					<div *ngIf="confirmPasswordError" class=" alert alert-danger err_signup">This field is required</div>
+				  </div>
+				  <label class="control control--checkbox check_box_terms cursor-point">
+					<input type="checkbox" #cv [checked]=false (change)="acceptTerms(cv.checked,$event)" value="1" name="terms_conditions" class="validate[required] hand_hower"  />
+					<div class="control__indicator"> </div>
+					<h6>*By creating an account I agree with these <a target="_blank" class="t&c"> Terms and Conditions.</a></h6>
+				  </label>
+				  <br/><br/>
+				  <div *ngIf="termsConditionError" class=" alert alert-danger err_signup">This check box is required</div>
+				  <div class="text-center"><button type="submit" id="reg_submit" class="signup">Get started </button></div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<div class="slds-backdrop slds-backdrop--open" *ngIf="visible"></div>
+
+<!-- signup modal ends -->

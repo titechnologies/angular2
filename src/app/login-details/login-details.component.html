@@ -1,0 +1,50 @@
+<app-private-header></app-private-header>
+	<div class="container signup-your-details login-details ">
+		<div class="container signup-head">
+			<h1><span>Let’s get started on your profile!</span></h1>
+		</div>
+		<section class="signup-margin">
+			<div class="signinbox">
+				<form  (ngSubmit)="editLoginDetails(loginDetailsForm.value)"  #loginDetailsForm="ngForm"><input name="_token" type="hidden" value="yejwsZCSXQbZOtOJi01HklqfbxVJ4vNiwU5BZc0G">
+				<div class="col-lg-2 "></div>
+				<div class=" col-lg-8 col-md-12 col-sm-12 col-xs-12 wallpost" style="margin-bottom:260px;min-height: 650px !important;">
+					<h1 class="head-margin"> Login Details</h1>
+					<div class="col-md-12 mobile-contact-block"> </div>
+					<div class="form-group email">
+						<label for="email*">Email*</label>
+						<input class="form-control"  [(ngModel)] = "user_email" placeholder="example@domain.com" data-prompt-position="topLeft:0" name="email" type="text" value="">
+						<span class="custom_error"> </span>
+					</div>
+					<h2>Change Password</h2>
+					<div class="form-group">
+						<label for="Current Password">Current Password</label>
+						<input class="form-control " [(ngModel)] = "password" placeholder="" aria-describedby="basic-addon1" id="current-password" data-prompt-position="topLeft:0" name="password" type="password" value="">
+						<div id="password-check"></div>
+						<span class="custom_error"> </span>
+					</div>
+					<div class="form-group">
+						<label for="New Password">New Password</label>
+						<input class="form-control " [(ngModel)] = "new_password" placeholder="" id="new-password" aria-describedby="basic-addon1" data-prompt-position="topLeft:0" name="new_password" type="password" value="">
+						<span class="custom_error"> </span>
+					</div>
+					<div class="form-group">
+						<label for="Confirm Password">Confirm Password</label>
+						<input class="form-control ]" [(ngModel)] = "confirm_password" placeholder="" id="confirm-password" aria-describedby="basic-addon1" data-prompt-position="topLeft:0" name="confirm_password" type="password" value="">
+						<div *ngIf="errLoginMsgMatch"	 class="alert alert-danger err_pass_mismatch">
+								{{ errLoginMsgMatch}}
+						</div>
+						<div *ngIf="errLoginMsg"	 class="alert alert-danger err_pass">
+								{{ errLoginMsg}}
+						</div>
+					</div>
+					<div class="buttons">
+						<button type="submit" class="signup" id="submit-form">Save<span class="icon-saved"></span></button>
+						<button type="button" routerLink ="/dashboard" class="detailsbtn sign_up_details_btn cancel login_det">Cancel </button>
+					</div>
+				</div>
+	<div class="col-lg-2 "></div>
+	</form>
+	</div>
+	</section>
+	</div>
+<app-footer></app-footer>

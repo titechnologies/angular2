@@ -1,0 +1,135 @@
+<app-private-header></app-private-header>
+	<section class="menu_area edit_menu ">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-sm-6">
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 profile_photo this_me">
+						<img *ngIf="!profilePic" class="img-responsive" src="assets/images/profile.jpg">
+						<img *ngIf="profilePic" class="img-responsive" [src]="profileImageUrl+profilePic">
+					</div>
+					<div class="col-lg-7 col-md-6 col-sm-7 col-xs-7 no-padding">
+						<h2>{{ dashboardData?.first_name }} {{dashboardData?.last_name}}<a  routerLink = "/formone" class="detail_edit_icn"><i class="fa fa-pencil"><span class="fix-editors">&nbsp;</span></i></a></h2>
+						<h3>
+							<a class="email" >{{dashboardData?.email}}</a>						
+						</h3>
+						<h3>
+							{{ dashboardData?.ph_no }}
+						</h3>
+					   <!-- <span class="hidden-lg hidden-md"> <a href="javascript:void(0)" data-toggle="modal" data-target="#bioModal" style="text-decoration: none;" class="button_red this_me" id="media-bio">BIO</a></span> -->
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-12 col-xs-12 hidden-sm hidden-xs border_line" style="position:relative;"> <a href="javascript:void(0)" style="text-decoration: none;" class="button_red this_me">BIO</a><br>
+				 <a href="javascript:void(0)" style="text-decoration: none;">
+						<p *ngIf="profileBio" id="more-content" style="overflow-wrap: break-word;">{{ profileBio| limitTo:200}}</p>
+					<span  *ngIf="bioLength > 200 " class="morecontent">&nbsp;<a (click)="showBioModal()"><span class="comment_icon"><i class="fa fa-commenting"></i></span></a></span>
+				 </a>
+				 <div class="edit_icn_container"><a routerLink = "/formone"><i class="fa fa-pencil detail_edit_icn" ></i></a></div>
+				</div>
+				<div class="col-md-4 col-sm-6 col-xs-12 top-tab no-padding">
+					<ul class="nav nav-tabs">
+
+						 <li>  <a style="cursor: pointer;"><img src="assets/images/tab1.svg"><br>
+							MY CV </a> </li>
+								<li>  <a style="cursor: pointer;"><img src="assets/images/tab3.svg"><br>
+							MY WALL </a> </li>
+						 <li> <a  style="cursor: pointer;"><img src="assets/images/tab2.svg"><br>
+
+							PERSONAL<br/>
+							STATEMENT</a> </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section> 
+
+	<!-- colour cahnage tab ends  -->
+	<div class="container main_container no-padding container-modal">
+		<div class="myaccount">
+			<div class="col-md-3 left_menu">
+				<h3>MY ACCOUNT</h3>
+				<div class="panel-group" id="accordion">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a  routerLink = "/formone" class="collapsed" aria-expanded="false"> <img src="assets/images/user.png"> Your Details</a>
+							</h4>
+						</div>
+						<div id="collapseOne" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;"></div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a  routerLink = "/formtwo" class="collapsed" aria-expanded="false"> <img src="assets/images/mail.png"> Contact Information</a>
+							</h4>
+						</div>
+						<div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;"></div>
+					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a routerLink = "/login-details"  class="collapsed" aria-expanded="false"> <img src="assets/images/lock.png"> Login Details</a>
+							</h4>
+						</div>
+						<div id="collapseThree" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-9">
+				<div class="right_menu pull-right">
+					<h3 class="text-center">My Account</h3>
+					<p class="text-center">Manage your information here</p>
+					<div class="col-lg-4 text-center inner-circle">
+						<center>
+							<a routerLink = "/formone">
+								<img src="assets/images/user-round.png" class="img-responsive">
+								<h5>Your Details</h5>
+								<p>Name, Bio, Birthday and Email Addresses for your CV</p>
+							</a>
+						</center>
+					</div>
+					<div class="col-lg-4 text-center inner-circle no-padding">
+						<center>
+							<a routerLink = "/formtwo">
+								<img src="assets/images/mail-round.png" class="img-responsive">
+								<h5>Contact Information</h5>
+								<p>Address and Phone Number for your CV</p>
+							</a>
+						</center>
+					</div>
+					<div class="col-lg-4 text-center inner-circle">
+						<center>
+							<a routerLink = "/login-details">
+								<img src="assets/images/lock-round.png" class="img-responsive">
+								<h5>Login Details</h5>
+								<p>Change them here!</p>
+							</a>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
+
+
+	<!-- new bio moadl starts -->
+	<div role="dialog" tabindex="-1" aria-labelledby="header43" class="slds-modal slds-fade-in-open modal_margin_top" *ngIf="bioModalVisible">
+		<div class="slds-modal__container">
+			<div class="slds-modal__content">
+				<div class="modal-header">
+					<h5 class="button_red_bio_modal">BIO</h5>
+					<button type="button" class="close close_modal" data-target="loginModal" data-dismiss="modal" (click)="hideBioModal()">
+					<img src="assets/images/close.svg" alt="Closing icon for CV+ Sign Up"/>
+				</button>
+				</div> 
+				<div class="modal-body">
+					{{ dashboardData?.profile_bio}}
+				</div>
+			</div>		
+		</div>
+	</div>
+	<div class="slds-backdrop slds-backdrop--open" *ngIf="bioModalVisible"></div>
+	<!-- new bio moadl ends -->
+
+<app-footer></app-footer>

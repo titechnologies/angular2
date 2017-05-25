@@ -1,0 +1,8 @@
+	.footer_heading{
+		text-decoration:none;
+		cursor:default;
+	}
+	.footer_content{
+		font: 300 14px/21px;
+		font-family: sans-serif;
+	}
